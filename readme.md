@@ -116,3 +116,53 @@ python finetuning.py
 
 # 4. Run evaluation
 python evaluation.py
+
+```
+
+# How to Run the ESC Model
+
+The ESC model is trained on the `bea-2019` dataset. The trained model is saved at `gec-imp/models/model.pt`.
+
+## Steps to Evaluate the ESC Model
+
+### 1. Prepare the Test File
+Place your test file in `gec-imp/test-text/` and name it `source.txt`.
+
+### 2. Output from Base Models
+If required, place the outputs from base models in the same `gec-imp/test-text/` directory.
+
+### 3. Set the Experiment Directory
+
+```bash
+export EXP_DIR=gec-imp
+```
+
+### 4. Run the Evaluation Script
+
+```bash
+python run.py --test \
+  --data_dir $EXP_DIR/dev-text \
+  --m2_dir $EXP_DIR/dev-m2 \
+  --model_path $EXP_DIR/models/model.pt \
+  --vocab_path $EXP_DIR/vocab.idx \
+  --output_path $EXP_DIR/outputs/dev.out
+```
+
+This command runs inference on the test set, using the checkpoint stored at `gec-imp/models/model.pt`. Ensure that `vocab.idx` and all the necessary data directories exist under `gec-imp`.
+
+### 5. Retrieve the Output
+The output will be saved at:
+
+```text
+gec-imp/outputs/test.out
+```
+
+## Requirements
+
+Ensure the following directories and files exist:
+- `gec-imp/test-text/` - Test data directory
+- `gec-imp/dev-text/` - Development data directory
+- `gec-imp/dev-m2/` - M2 format files directory
+- `gec-imp/models/model.pt` - Trained model checkpoint
+- `gec-imp/vocab.idx` - Vocabulary index file
+- `gec-imp/outputs/` - Output directory (will be created if it doesn't exist)
