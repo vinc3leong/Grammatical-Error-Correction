@@ -1,0 +1,9 @@
+1. put the test file in gec-imp/test-text/ as source.txt
+
+2. put the outputs of the base models into gec-imp/test-text
+
+3. run "export EXP_DIR= gec-imp"
+
+4. run "python run.py --test --data_dir $EXP_DIR/dev-text --m2_dir $EXP_DIR/dev-m2 --model_path $EXP_DIR/models/model.pt --vocab_path $EXP_DIR/vocab.idx --output_path $EXP_DIR/outputs/dev.out"
+
+5. output will be found at gec-imp/outputs/test.out
